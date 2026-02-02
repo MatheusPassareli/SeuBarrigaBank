@@ -14,4 +14,10 @@ public class ContasPage extends BasePage {
     public String obterMensagemSucesso(){
         return obterTexto(By.xpath("/html/body/div[1]"));
     }
+    public void excluirConta(){
+        clicarBotao(By.xpath("//*[@id=\"tabelaContas\"]/tbody/tr/td[2]/a[2]/span"));
+    }
+    public void editarConta(){
+        clicarBotao(By.xpath("//*[@id=\"tabelaContas\"]/tbody/tr/td[2]/a[1]/span"));
+    }
 }

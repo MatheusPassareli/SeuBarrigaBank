@@ -12,11 +12,24 @@ public class ContaTest extends BaseTest {
     ContasPage contasPage = new ContasPage();
 
     @Test
-    public void InserirConta(){
+    public void InserirConta() throws InterruptedException{
         menuPage.acessarTelaInserirConta();
         contasPage.setNome("Conta do Teste");
         contasPage.salvar();
         Assert.assertEquals("Conta adicionada com sucesso!", contasPage.obterMensagemSucesso());
+    }
+    @Test
+    public void EditarConta(){
+        menuPage.acessarTelaEditarConta();
+        contasPage.editarConta();
+        contasPage.setNome("Conta do Teste alterada");
+        contasPage.salvar();
+        Assert.assertEquals("Conta alterada com sucesso!", contasPage.obterMensagemSucesso());
+    }
 
+    @Test
+    public void ExcluirConta(){
+        menuPage.acessarTelaEditarConta();
+        contasPage.excluirConta();
     }
 }

@@ -25,8 +25,8 @@ public class BaseTest {
     @Before
     public void inicializa(){
         page.acessarTelaInicial();
-        page.setEmail("teste.teste@gmail.com.br");
-        page.setSenha("senha123");
+        page.setEmail("teste.matheus@email.com.br");
+        page.setSenha("tzKriYS7sqFhJAjl");
         page.entrar();
         page.confirmacaoLogin();
     }
