@@ -23,8 +23,8 @@ public class MovimentacoesPage extends BasePage {
     public void valor(float valor){
         escreve(By.id("valor"), String.valueOf(valor));
     }
-    public void escolherConta(String valor){
-        selecionarCombo(By.id("conta"), valor);
+    public void escolherConta(String conta){
+        selecionarCombo(By.id("conta"), conta);
     }
     public void escolherSituacao(String situacao){
         if (situacao.equals("Pago")){
