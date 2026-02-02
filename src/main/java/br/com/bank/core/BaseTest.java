@@ -28,6 +28,7 @@ public class BaseTest {
         page.setEmail("teste.teste@gmail.com.br");
         page.setSenha("senha123");
         page.entrar();
+        page.confirmacaoLogin();
     }
 
     @After

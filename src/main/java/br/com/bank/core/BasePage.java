@@ -44,6 +44,10 @@ public class BasePage {
         return getDriver().findElement(By.id(id)).isSelected();
     }
 
+    public boolean isConfimacaoLogin (By by) {
+        return getDriver().findElement(by).isSelected();
+    }
+
     public void selecionarCombo(By by, String valor) {
         WebElement element = getDriver().findElement(by);
         Select combo = new Select(element);
@@ -60,8 +64,8 @@ public class BasePage {
         getDriver().findElement(by).click();
     }
 
-    public void clicarLink(By by) {
-        getDriver().findElement(by).click();
+    public void clicarLink(String link) {
+        getDriver().findElement(By.linkText(link)).click();
     }
 
     public String obterTexto(By by) {
@@ -77,8 +81,7 @@ public class BasePage {
         String valor = alert.getText();
         return valor;
     }
-
-    public String alertaObterTextoEAceita() {
+    public String alertaObterTextoSemTrocarTela(){
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = getDriver().switchTo().alert();

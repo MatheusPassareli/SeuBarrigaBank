@@ -2,6 +2,8 @@ package br.com.bank.page;
 
 import br.com.bank.core.BasePage;
 import br.com.bank.core.DriverFactory;
+import junit.framework.Assert;
+import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.By;
 
 public class LoginPage extends BasePage {
@@ -17,5 +19,8 @@ public class LoginPage extends BasePage {
     }
     public void entrar(){
         clicarBotao(By.xpath("/html/body/div[2]/form/button"));
+    }
+    public boolean confirmacaoLogin(){
+       return isConfimacaoLogin(By.xpath("/html/body/div[1]"));
     }
 }
