@@ -2,8 +2,6 @@ package br.com.bank.page;
 
 import br.com.bank.core.BasePage;
 import br.com.bank.core.DriverFactory;
-import junit.framework.Assert;
-import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.By;
 
 public class LoginPage extends BasePage {
