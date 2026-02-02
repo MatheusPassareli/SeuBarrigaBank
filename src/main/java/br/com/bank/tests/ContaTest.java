@@ -4,6 +4,7 @@ import br.com.bank.core.BaseTest;
 import br.com.bank.page.ContasPage;
 import br.com.bank.page.MenuPage;
 import junit.framework.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class ContaTest extends BaseTest {
@@ -18,18 +19,20 @@ public class ContaTest extends BaseTest {
         contasPage.salvar();
         Assert.assertEquals("Conta adicionada com sucesso!", contasPage.obterMensagemSucesso());
     }
-    @Test
-    public void EditarConta(){
-        menuPage.acessarTelaEditarConta();
-        contasPage.editarConta();
-        contasPage.setNome("Conta do Teste alterada");
-        contasPage.salvar();
-        Assert.assertEquals("Conta alterada com sucesso!", contasPage.obterMensagemSucesso());
-    }
 
     @Test
     public void ExcluirConta(){
         menuPage.acessarTelaEditarConta();
         contasPage.excluirConta();
+    }
+
+    @Test
+    public void testAlterarConta(){
+        menuPage.acessarTelaEditarConta();
+
+        contasPage.clicarAlterarConta("Conta do Teste");
+        contasPage.setNome("Conta do Teste alterada");
+        contasPage.salvar();
+        Assert.assertEquals("Conta alterada com sucesso!", contasPage.obterMensagemSucesso());
     }
 }

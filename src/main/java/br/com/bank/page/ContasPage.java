@@ -17,7 +17,9 @@ public class ContasPage extends BasePage {
     public void excluirConta(){
         clicarBotao(By.xpath("//*[@id=\"tabelaContas\"]/tbody/tr/td[2]/a[2]/span"));
     }
-    public void editarConta(){
-        clicarBotao(By.xpath("//*[@id=\"tabelaContas\"]/tbody/tr/td[2]/a[1]/span"));
+    public void clicarAlterarConta(String contaDoTeste) {
+        obterCelula("Conta", contaDoTeste, "Ações", "tabelaContas")
+                .findElement(By.xpath(".//span[@class='glyphicon glyphicon-edit']"))
+                .click();
     }
 }
