@@ -154,5 +154,4 @@ public class BasePage {
         }
         return idColuna;
     }
-
 }
