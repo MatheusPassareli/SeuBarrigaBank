@@ -13,7 +13,7 @@ public class ContaTest extends BaseTest {
     ContasPage contasPage = new ContasPage();
 
     @Test
-    public void InserirConta() throws InterruptedException{
+    public void inserirConta() throws InterruptedException{
         menuPage.acessarTelaInserirConta();
         contasPage.setNome("Conta do Teste");
         contasPage.salvar();
@@ -21,7 +21,7 @@ public class ContaTest extends BaseTest {
     }
 
     @Test
-    public void ExcluirConta(){
+    public void excluirConta(){
         menuPage.acessarTelaEditarConta();
         contasPage.excluirConta();
     }
@@ -34,5 +34,12 @@ public class ContaTest extends BaseTest {
         contasPage.setNome("Conta do Teste alterada");
         contasPage.salvar();
         Assert.assertEquals("Conta alterada com sucesso!", contasPage.obterMensagemSucesso());
+    }
+    @Test
+    public void contaComOMesmoNome(){
+        menuPage.acessarTelaInserirConta();
+        contasPage.setNome("Conta do Teste");
+        contasPage.salvar();
+        Assert.assertEquals("Já existe uma conta com esse nome!", contasPage.obterMensagemDeErro());
     }
 }
