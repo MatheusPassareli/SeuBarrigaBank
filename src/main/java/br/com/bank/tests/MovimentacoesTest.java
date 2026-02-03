@@ -26,6 +26,7 @@ public class MovimentacoesTest extends BaseTest {
         movimentacoesPage.salvar();
         Assert.assertEquals("Movimentação adicionada com sucesso!", movimentacoesPage.obterMensagemSucesso());
     }
+
     @Test
     public void obrigatorioTodosOsCampos() {
         menuPage.acessarTelaMovimentacoes();
@@ -93,6 +94,7 @@ public class MovimentacoesTest extends BaseTest {
         Assert.assertEquals("Valor é obrigatório", movimentacoesPage.obterTexto(By.xpath(
                 ".//ul//li[contains(.,'Valor é obrigatório')]")));
     }
+
     @Test
     public void valorDeveSerNumero(){
         menuPage.acessarTelaMovimentacoes();

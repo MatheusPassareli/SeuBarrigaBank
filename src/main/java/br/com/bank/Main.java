@@ -2,6 +2,10 @@ package br.com.bank;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        int[] numeros = {10, 20, 30};
+
+        for (int numero : numeros) {
+            System.out.println(numero);
+        }
     }
 }

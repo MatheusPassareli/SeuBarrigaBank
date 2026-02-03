@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 import static br.com.bank.core.DriverFactory.getDriver;
@@ -153,5 +154,16 @@ public class BasePage {
             }
         }
         return idColuna;
+    }
+
+    /*************** List *******************/
+
+    public List<String> obterErros(){
+      List<WebElement> erros = DriverFactory.getDriver().findElements(By.xpath("//div[@class='alert alert-danger']/li"));
+      List<String> retorno = new ArrayList<String>();
+      for (WebElement erro: erros) {
+          retorno.add(erro.getText().trim());
+      }
+      return retorno;
     }
 }
