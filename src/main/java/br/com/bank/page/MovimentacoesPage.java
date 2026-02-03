@@ -38,6 +38,6 @@ public class MovimentacoesPage extends BasePage {
         clicarBotao(By.className("btn-group"));
     }
     public String obterMensagemSucesso(){
-        return obterTexto(By.xpath("/html/body/div[1]"));
+        return obterTexto(By.xpath("//div[@class= 'alert alert-success' and contains(text(), 'Movimentação adicionada com sucesso!')]"));
     }
 }
