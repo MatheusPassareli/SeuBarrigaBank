@@ -54,8 +54,8 @@ public class BasePage {
         combo.selectByVisibleText(valor);
     }
 
-    public String obterValorCombo(String id) {
-        WebElement element = getDriver().findElement(By.id(id));
+    public String obterValorCombo(By by) {
+        WebElement element = getDriver().findElement(by);
         Select combo = new Select(element);
         return combo.getFirstSelectedOption().getText();
     }
