@@ -3,9 +3,15 @@ package br.com.bank.tests;
 import br.com.bank.core.BaseTest;
 import br.com.bank.page.MenuPage;
 import br.com.bank.page.MovimentacoesPage;
+import br.com.bank.utils.DataUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 
 public class MovimentacoesTest extends BaseTest {
@@ -108,5 +114,24 @@ public class MovimentacoesTest extends BaseTest {
         movimentacoesPage.salvar();
         Assert.assertEquals("Valor deve ser um número", movimentacoesPage.obterTexto(By.xpath(
                 "//ul//li[contains(.,'Valor deve ser um número')]")));
+    }
+
+    @Test
+    public void testInserirMovimetacaoFuturo(){
+        menuPage.acessarTelaMovimentacoes();
+        Date dataFutura = DataUtils.obterDataComDiferencaDias(5);
+        movimentacoesPage.escolherTipoMovimentacao("Receita");
+        movimentacoesPage.escolherDataMovimentacao(DataUtils.obterDataFormatada(dataFutura));
+        movimentacoesPage.escolherDataPagamento(DataUtils.obterDataFormatada(dataFutura));
+        movimentacoesPage.descricao("Teste");
+        movimentacoesPage.interessado("MP");
+        movimentacoesPage.valor("50");
+        movimentacoesPage.escolherConta("Conta do Teste");
+        movimentacoesPage.escolherSituacao("Pago");
+        movimentacoesPage.salvar();
+        List<String> erros = movimentacoesPage.obterErros();
+        Assert.assertFalse(erros.containsAll(Arrays.asList(
+                "Data da Movimentação deve ser menor ou igual à data atual"
+        )));
     }
 }
