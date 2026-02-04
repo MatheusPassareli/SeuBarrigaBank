@@ -70,7 +70,8 @@ public class BasePage {
     }
 
     public String obterTexto(By by) {
-        return getDriver().findElement(by).getText();
+        WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(10));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(by)).getText();
     }
 
     public String obterTexto(String id) {
@@ -82,6 +83,7 @@ public class BasePage {
         String valor = alert.getText();
         return valor;
     }
+
     public String alertaObterTextoSemTrocarTela(){
         WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.alertIsPresent());
