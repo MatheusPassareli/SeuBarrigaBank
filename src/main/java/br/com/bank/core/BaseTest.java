@@ -32,9 +32,9 @@ public class BaseTest {
     }
 
     @After
-    public void finaliza() throws IOException {
+    public void finalizar() throws IOException {
         TakesScreenshot ss = (TakesScreenshot) getDriver();
-        File arquivo = ss.getScreenshotAs(OutputType.FILE);
+        File arquivo = ss.<File>getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(arquivo, new File("target" + File.separator + "screenshot" +
                 File.separator + testeName.getMethodName() + ".jpg"));
 

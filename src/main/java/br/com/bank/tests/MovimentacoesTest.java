@@ -5,7 +5,9 @@ import br.com.bank.page.MenuPage;
 import br.com.bank.page.MovimentacoesPage;
 import br.com.bank.utils.DataUtils;
 import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 
 import java.lang.reflect.Array;
@@ -15,14 +17,14 @@ import java.util.List;
 
 import static br.com.bank.utils.DataUtils.obterDataFormatada;
 
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class MovimentacoesTest extends BaseTest {
 
     MenuPage menuPage = new MenuPage();
     MovimentacoesPage movimentacoesPage = new MovimentacoesPage();
 
     @Test
-    public void cadastrarMovimentacao(){
+    public void test1_CadastrarMovimentacao(){
         menuPage.acessarTelaMovimentacoes();
         movimentacoesPage.escolherTipoMovimentacao("Receita");
         movimentacoesPage.escolherDataMovimentacao(obterDataFormatada(new Date()));
@@ -30,14 +32,14 @@ public class MovimentacoesTest extends BaseTest {
         movimentacoesPage.descricao("Teste");
         movimentacoesPage.interessado("MP");
         movimentacoesPage.valor("50");
-        movimentacoesPage.escolherConta("Conta do Teste");
+        movimentacoesPage.escolherConta("Conta do Teste alterada");
         movimentacoesPage.escolherSituacao("Pago");
         movimentacoesPage.salvar();
         Assert.assertEquals("Movimentação adicionada com sucesso!", movimentacoesPage.obterMensagemSucesso());
     }
 
     @Test
-    public void obrigatorioTodosOsCampos(){
+    public void test2_ObrigatorioTodosOsCampos(){
         menuPage.acessarTelaMovimentacoes();
         movimentacoesPage.salvar();
         Assert.assertEquals("Data da Movimentação é obrigatório", movimentacoesPage.obterTexto(By.xpath(
@@ -55,7 +57,26 @@ public class MovimentacoesTest extends BaseTest {
     }
 
     @Test
-    public void obrigatorioDataMovimentação(){
+    public void test3_InserirMovimetacaoFuturo() {
+        menuPage.acessarTelaMovimentacoes();
+        Date dataFutura = DataUtils.obterDataComDiferencaDias(5);
+        movimentacoesPage.escolherTipoMovimentacao("Receita");
+        movimentacoesPage.escolherDataMovimentacao(obterDataFormatada(dataFutura));
+        movimentacoesPage.escolherDataPagamento(obterDataFormatada(dataFutura));
+        movimentacoesPage.descricao("Teste");
+        movimentacoesPage.interessado("MP");
+        movimentacoesPage.valor("50");
+        movimentacoesPage.escolherConta("Conta do Teste alterada");
+        movimentacoesPage.escolherSituacao("Pago");
+        movimentacoesPage.salvar();
+        List<String> erros = movimentacoesPage.obterErros();
+        Assert.assertFalse(erros.containsAll(Arrays.asList(
+                "Data da Movimentação deve ser menor ou igual à data atual"
+        )));
+    }
+
+    @Test
+    public void test4_obrigatorioDataMovimentação(){
         menuPage.acessarTelaMovimentacoes();
         movimentacoesPage.salvar();
         Assert.assertEquals("Data da Movimentação é obrigatório", movimentacoesPage.obterTexto(By.xpath(
@@ -63,7 +84,7 @@ public class MovimentacoesTest extends BaseTest {
     }
 
     @Test
-    public void obrigatorioDataPagamento(){
+    public void test5_obrigatorioDataPagamento(){
         menuPage.acessarTelaMovimentacoes();
         movimentacoesPage.escolherDataMovimentacao("08/01/2026");
         movimentacoesPage.salvar();
@@ -72,7 +93,7 @@ public class MovimentacoesTest extends BaseTest {
     }
 
     @Test
-    public void obrigatorioDescricao(){
+    public void test6_obrigatorioDescricao(){
         menuPage.acessarTelaMovimentacoes();
         movimentacoesPage.escolherDataMovimentacao("08/01/2026");
         movimentacoesPage.escolherDataPagamento("07/02/2026");
@@ -82,7 +103,7 @@ public class MovimentacoesTest extends BaseTest {
     }
 
     @Test
-    public void obrigatorioInteressado(){
+    public void test7_obrigatorioInteressado(){
         menuPage.acessarTelaMovimentacoes();
         movimentacoesPage.escolherDataMovimentacao("08/01/2026");
         movimentacoesPage.escolherDataPagamento("07/02/2026");
@@ -93,7 +114,7 @@ public class MovimentacoesTest extends BaseTest {
     }
 
     @Test
-    public void obrigatorioValor() {
+    public void test8_obrigatorioValor() {
         menuPage.acessarTelaMovimentacoes();
         movimentacoesPage.escolherDataMovimentacao("08/01/2026");
         movimentacoesPage.escolherDataPagamento("07/02/2026");
@@ -105,7 +126,7 @@ public class MovimentacoesTest extends BaseTest {
     }
 
     @Test
-    public void valorDeveSerNumero() {
+    public void test9_valorDeveSerNumero() {
         menuPage.acessarTelaMovimentacoes();
         movimentacoesPage.escolherDataMovimentacao("08/01/2026");
         movimentacoesPage.escolherDataPagamento("07/02/2026");
@@ -115,24 +136,5 @@ public class MovimentacoesTest extends BaseTest {
         movimentacoesPage.salvar();
         Assert.assertEquals("Valor deve ser um número", movimentacoesPage.obterTexto(By.xpath(
                 "//ul//li[contains(.,'Valor deve ser um número')]")));
-    }
-
-    @Test
-    public void testInserirMovimetacaoFuturo(){
-        menuPage.acessarTelaMovimentacoes();
-        Date dataFutura = DataUtils.obterDataComDiferencaDias(5);
-        movimentacoesPage.escolherTipoMovimentacao("Receita");
-        movimentacoesPage.escolherDataMovimentacao(obterDataFormatada(dataFutura));
-        movimentacoesPage.escolherDataPagamento(obterDataFormatada(dataFutura));
-        movimentacoesPage.descricao("Teste");
-        movimentacoesPage.interessado("MP");
-        movimentacoesPage.valor("50");
-        movimentacoesPage.escolherConta("Conta do Teste");
-        movimentacoesPage.escolherSituacao("Pago");
-        movimentacoesPage.salvar();
-        List<String> erros = movimentacoesPage.obterErros();
-        Assert.assertFalse(erros.containsAll(Arrays.asList(
-                "Data da Movimentação deve ser menor ou igual à data atual"
-        )));
     }
 }

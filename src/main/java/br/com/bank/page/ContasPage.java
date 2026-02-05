@@ -12,14 +12,12 @@ public class ContasPage extends BasePage {
         clicarBotao(By.xpath("/html/body/div[2]/form/div[2]/button"));
     }
     public String obterMensagemSucesso(){
-        return obterTexto(By.xpath("/html/body/div[1]"));
+        return obterTexto(By.xpath("//div[@class= 'alert alert-success']"));
     }
     public String obterMensagemDeErro(){
         return obterTexto(By.xpath("//div[@class= 'alert alert-danger']"));
     }
-    public void excluirConta(){
-        clicarBotao(By.xpath("//*[@id=\"tabelaContas\"]/tbody/tr/td[2]/a[2]/span"));
-    }
+
     public void clicarAlterarConta(String contaDoTeste) {
         obterCelula("Conta", contaDoTeste, "Ações", "tabelaContas")
                 .findElement(By.xpath(".//span[@class='glyphicon glyphicon-edit']"))
