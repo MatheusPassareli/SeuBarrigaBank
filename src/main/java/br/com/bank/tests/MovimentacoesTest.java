@@ -13,6 +13,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import static br.com.bank.utils.DataUtils.obterDataFormatada;
+
 
 public class MovimentacoesTest extends BaseTest {
 
@@ -23,16 +25,15 @@ public class MovimentacoesTest extends BaseTest {
     public void cadastrarMovimentacao(){
         menuPage.acessarTelaMovimentacoes();
         movimentacoesPage.escolherTipoMovimentacao("Receita");
-        movimentacoesPage.escolherDataMovimentacao("08/01/2026");
-        movimentacoesPage.escolherDataPagamento("07/02/2026");
+        movimentacoesPage.escolherDataMovimentacao(obterDataFormatada(new Date()));
+        movimentacoesPage.escolherDataPagamento(obterDataFormatada(new Date()));
         movimentacoesPage.descricao("Teste");
         movimentacoesPage.interessado("MP");
         movimentacoesPage.valor("50");
         movimentacoesPage.escolherConta("Conta do Teste");
         movimentacoesPage.escolherSituacao("Pago");
         movimentacoesPage.salvar();
-        Assert.assertEquals("Movimentação adicionada com sucesso!", movimentacoesPage.obterTexto(By.xpath(
-                "//div[@class= 'alert alert-success' and contains(text(), 'Movimentação adicionada com sucesso!')]")));
+        Assert.assertEquals("Movimentação adicionada com sucesso!", movimentacoesPage.obterMensagemSucesso());
     }
 
     @Test
@@ -121,8 +122,8 @@ public class MovimentacoesTest extends BaseTest {
         menuPage.acessarTelaMovimentacoes();
         Date dataFutura = DataUtils.obterDataComDiferencaDias(5);
         movimentacoesPage.escolherTipoMovimentacao("Receita");
-        movimentacoesPage.escolherDataMovimentacao(DataUtils.obterDataFormatada(dataFutura));
-        movimentacoesPage.escolherDataPagamento(DataUtils.obterDataFormatada(dataFutura));
+        movimentacoesPage.escolherDataMovimentacao(obterDataFormatada(dataFutura));
+        movimentacoesPage.escolherDataPagamento(obterDataFormatada(dataFutura));
         movimentacoesPage.descricao("Teste");
         movimentacoesPage.interessado("MP");
         movimentacoesPage.valor("50");

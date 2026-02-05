@@ -1,7 +1,12 @@
 package br.com.bank.page;
 
 import br.com.bank.core.BasePage;
+import br.com.bank.core.DriverFactory;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class MovimentacoesPage extends BasePage {
 
@@ -38,6 +43,8 @@ public class MovimentacoesPage extends BasePage {
         clicarBotao(By.className("btn-group"));
     }
     public String obterMensagemSucesso(){
-        return obterTexto(By.xpath("//div[@class= 'alert alert-success' and contains(text(), 'Movimentação adicionada com sucesso!')]"));
+        WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(10));
+        return wait.until(ExpectedConditions.visibilityOfElementLocated((By.xpath(
+                "//div[@class= 'alert alert-success' and contains(text(), 'Movimentação adicionada com sucesso!')]")))).getText();
     }
 }
