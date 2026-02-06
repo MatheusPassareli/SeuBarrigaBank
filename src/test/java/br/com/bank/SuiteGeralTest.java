@@ -1,4 +1,4 @@
-package br.com.bank.suites;
+package br.com.bank;
 
 import br.com.bank.core.DriverFactory;
 import br.com.bank.page.LoginPage;
@@ -14,11 +14,11 @@ import org.junit.runners.Suite;
         MovimentacoesTest.class,
         RemoverMovimentacaoContaTest.class,
         SaldoTest.class,
-        ResumoTest.class
+        ResumoTest.class,
 })
-public abstract class SuiteGeral {
+public class SuiteGeralTest {
 
-    private  static LoginPage page = new LoginPage();
+    private static LoginPage page = new LoginPage();
 
     @BeforeClass
     public static void inicializa(){

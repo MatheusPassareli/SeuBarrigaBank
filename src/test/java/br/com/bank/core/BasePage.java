@@ -70,7 +70,7 @@ public class BasePage {
     }
 
     public String obterTexto(By by) {
-        WebDriverWait wait = new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(by)).getText();
     }
 
@@ -161,7 +161,7 @@ public class BasePage {
     /*************** List *******************/
 
     public List<String> obterErros(){
-      List<WebElement> erros = DriverFactory.getDriver().findElements(By.xpath("//div[@class='alert alert-danger']/li"));
+      List<WebElement> erros = getDriver().findElements(By.xpath("//div[@class='alert alert-danger']/li"));
       List<String> retorno = new ArrayList<String>();
       for (WebElement erro: erros) {
           retorno.add(erro.getText().trim());
@@ -169,7 +169,7 @@ public class BasePage {
       return retorno;
     }
     public List<String> obterListaVazia(){
-        List<WebElement> erros = DriverFactory.getDriver().findElements(By.xpath("//*[@id=\"tabelaExtrato\"]"));
+        List<WebElement> erros = getDriver().findElements(By.xpath("//*[@id=\"tabelaExtrato\"]"));
         List<String> retorno = new ArrayList<String>();
         for (WebElement erro: erros) {
             retorno.add(erro.getText().trim());
