@@ -33,5 +33,4 @@ public abstract class SuiteGeral {
     public static void finaliza(){
         DriverFactory.killDriver();
     }
-
 }

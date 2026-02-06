@@ -168,4 +168,12 @@ public class BasePage {
       }
       return retorno;
     }
+    public List<String> obterListaVazia(){
+        List<WebElement> erros = DriverFactory.getDriver().findElements(By.xpath("//*[@id=\"tabelaExtrato\"]"));
+        List<String> retorno = new ArrayList<String>();
+        for (WebElement erro: erros) {
+            retorno.add(erro.getText().trim());
+        }
+        return retorno;
+    }
 }

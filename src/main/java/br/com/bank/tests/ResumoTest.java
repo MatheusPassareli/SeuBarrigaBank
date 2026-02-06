@@ -10,6 +10,9 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import java.util.Arrays;
+import java.util.List;
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ResumoTest extends BaseTest {
     MenuPage menuPage = new MenuPage();
@@ -35,6 +38,13 @@ public class ResumoTest extends BaseTest {
     public void test3_ResumoMensal(){
         menuPage.acessarTelaResumoMensal();
         Assert.assertEquals("Seu Barriga - Extrato", DriverFactory.getDriver().getTitle());
+    }
+
+    @Test
+    public void test4_ListaVazia(){
+        menuPage.acessarTelaResumoMensal();
+        List<String> elementosEncontrados = resumoMensalPage.obterListaVazia();
+        Assert.assertTrue(elementosEncontrados.isEmpty());
     }
 }
 
