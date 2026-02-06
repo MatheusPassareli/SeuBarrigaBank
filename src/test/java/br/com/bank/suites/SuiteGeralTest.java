@@ -1,4 +1,4 @@
-package br.com.bank;
+package br.com.bank.suites;
 
 import br.com.bank.core.DriverFactory;
 import br.com.bank.page.LoginPage;
