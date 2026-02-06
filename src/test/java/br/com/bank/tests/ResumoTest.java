@@ -30,7 +30,7 @@ public class ResumoTest extends BaseTest {
     public void test2_ExcluirConta(){
         menuPage.acessarTelaEditarConta();
         contasPage.clicarExcluirConta("Conta do Teste alterada");
-        junit.framework.Assert.assertEquals("Conta removida com sucesso!", contasPage.obterMensagemSucesso());
+        Assert.assertEquals("Conta removida com sucesso!", contasPage.obterMensagemSucesso());
     }
 
     @Test
