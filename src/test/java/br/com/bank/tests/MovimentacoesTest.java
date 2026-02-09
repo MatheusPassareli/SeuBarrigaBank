@@ -31,7 +31,7 @@ public class MovimentacoesTest extends BaseTest {
         movimentacoesPage.descricao("Teste");
         movimentacoesPage.interessado("MP");
         movimentacoesPage.valor("50");
-        movimentacoesPage.escolherConta("Conta do Teste alterada");
+        movimentacoesPage.escolherConta("Conta para movimentacoes");
         movimentacoesPage.escolherSituacao("Pago");
         movimentacoesPage.salvar();
         Assert.assertEquals("Movimentação adicionada com sucesso!", movimentacoesPage.obterMensagemSucesso());
@@ -65,7 +65,7 @@ public class MovimentacoesTest extends BaseTest {
         movimentacoesPage.descricao("Teste");
         movimentacoesPage.interessado("MP");
         movimentacoesPage.valor("50");
-        movimentacoesPage.escolherConta("Conta do Teste alterada");
+        movimentacoesPage.escolherConta("Conta para movimentacoes");
         movimentacoesPage.escolherSituacao("Pago");
         movimentacoesPage.salvar();
         List<String> erros = movimentacoesPage.obterErros();

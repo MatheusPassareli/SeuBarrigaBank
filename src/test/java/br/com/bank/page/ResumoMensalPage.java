@@ -30,5 +30,11 @@ public class ResumoMensalPage extends BasePage {
         }
         return retorno;
     }
+    public void selecionarAno(String ano){
+        selecionarCombo(By.id("ano"), ano);
+    }
 
+    public void buscar(){
+        clicarBotao(By.xpath("//input[@value='Buscar']"));
+    }
 }

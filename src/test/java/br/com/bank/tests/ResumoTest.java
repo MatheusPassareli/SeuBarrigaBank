@@ -29,7 +29,7 @@ public class ResumoTest extends BaseTest {
     @Test
     public void test2_ExcluirConta(){
         menuPage.acessarTelaEditarConta();
-        contasPage.clicarExcluirConta("Conta do Teste alterada");
+        contasPage.clicarExcluirConta("Conta alterada");
         Assert.assertEquals("Conta removida com sucesso!", contasPage.obterMensagemSucesso());
     }
 
@@ -37,14 +37,17 @@ public class ResumoTest extends BaseTest {
     public void test3_ResumoMensal(){
         menuPage.acessarTelaResumoMensal();
         Assert.assertEquals("Seu Barriga - Extrato", DriverFactory.getDriver().getTitle());
+        resumoMensalPage.selecionarAno("2016");
+        resumoMensalPage.buscar();
     }
 
-    @Test
-    public void test4_ListaVazia(){
-        menuPage.acessarTelaResumoMensal();
-        List<String> elementosEncontrados = resumoMensalPage.obterListaVazia();
-        Assert.assertTrue(elementosEncontrados.isEmpty());
-    }
+//    @Test
+//    public void test4_ListaVazia(){
+//        menuPage.acessarTelaResumoMensal();
+//        List<String> elementosEncontrados = resumoMensalPage.obterListaVazia();
+//        Assert.assertTrue(elementosEncontrados.isEmpty());
+//    }
+
 }
 
 

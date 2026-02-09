@@ -50,8 +50,17 @@ public class BasePage {
     }
 
     public void selecionarCombo(By by, String valor) {
-        WebElement element = getDriver().findElement(by);
-        Select combo = new Select(element);
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        WebElement selectElement = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+        Select combo = new Select(selectElement);
+        wait.until(driver -> {
+            for (WebElement option : combo.getOptions()) {
+                if (option.getText().trim().equals(valor)) {
+                    return true;
+                }
+            }
+            return false;
+        });
         combo.selectByVisibleText(valor);
     }
 

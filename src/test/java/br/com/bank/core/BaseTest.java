@@ -21,14 +21,14 @@ public class BaseTest {
     @Rule
     public TestName testeName = new TestName();
 
-//    @Before
-//    public void inicializa(){
-//        page.acessarTelaInicial();
-//        page.setEmail("teste.matheus@email.com.br");
-//        page.setSenha("tzKriYS7sqFhJAjl");
-//        page.entrar();
-//        page.confirmacaoLogin();
-//    }
+    @Before
+    public void inicializa(){
+        page.acessarTelaInicial();
+        page.setEmail("teste.matheus@email.com.br");
+        page.setSenha("tzKriYS7sqFhJAjl");
+        page.entrar();
+        page.confirmacaoLogin();
+    }
 
     @After
     public void finalizar() throws IOException {
